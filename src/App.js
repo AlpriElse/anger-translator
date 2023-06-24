@@ -9,6 +9,7 @@ import Form from 'react-bootstrap/Form'
 import AngryText from './components/AngryText'
 import useDeviceType, { DeviceType } from './hooks/useDeviceType'
 import useAngerTranslation from './hooks/useAngerTranslation'
+import useSetVhStyleProperty from './hooks/useSetVhStyleProperty'
 
 function App() {
   const promptInputRef = useRef()
@@ -58,6 +59,8 @@ function App() {
       </Button>
     </InputGroup>
   )
+
+  useSetVhStyleProperty()
 
   if (deviceType === DeviceType.MOBILE) {
     return (
