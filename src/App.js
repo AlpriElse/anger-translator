@@ -7,10 +7,12 @@ import Row from 'react-bootstrap/Row'
 import InputGroup from 'react-bootstrap/InputGroup'
 import Form from 'react-bootstrap/Form'
 import AngryText from './components/AngryText'
+import LoadingSpinner from './components/LoadingSpinner'
+import { SOMEWHAT_BLACK } from './constants/Colors'
+
 import useDeviceType, { DeviceType } from './hooks/useDeviceType'
 import useAngerTranslation from './hooks/useAngerTranslation'
 import useSetVhStyleProperty from './hooks/useSetVhStyleProperty'
-import { SOMEWHAT_BLACK } from './constants/Colors'
 
 import './App.css'
 
@@ -27,9 +29,9 @@ function App() {
   const angerTranslationUi = (isGeneratingAngerTranslation, angerTranslation) => {
     if (isGeneratingAngerTranslation) {
       return (
-        <div style={{ paddingTop: '5em'}}>
-        <h2>Loading...</h2>
-      </div>
+        <div style={{ paddingTop: '5em', display: 'flex', justifyContent: 'center'}}>
+          <LoadingSpinner/>
+        </div>
       )
     }
 
