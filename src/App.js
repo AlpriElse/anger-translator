@@ -63,7 +63,7 @@ function App() {
     return (
       <div style={{
         display: 'flex',
-        height: '100vh',
+        height: 'calc(var(--vh, 1vh) * 100)',
         flexDirection: 'column'
       }}>
         <div className="p-4" style={{
