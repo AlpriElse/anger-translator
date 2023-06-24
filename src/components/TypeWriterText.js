@@ -1,7 +1,8 @@
-import React, { useRef, useEffect } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import BlinkingCursor from './BlinkingCursor'
 
 const TypeWriterText = ({text}) => {
+  const [isTyping, setIsTyping] = useState(true)
   const typewriterRef = useRef()
   useEffect(() => {
     function type(index) {
@@ -12,13 +13,18 @@ const TypeWriterText = ({text}) => {
           () => requestAnimationFrame(() => type(index)),
           50
         );
+      } else {
+        setTimeout(
+          () => setIsTyping(false),
+          2000
+        )
       }
     }
     type(0);
   }, [text])
   return (
     <>
-      <span className="text-start" ref={typewriterRef}></span><BlinkingCursor/>
+      <span className="text-start" ref={typewriterRef}></span>{isTyping && <BlinkingCursor/>}
     </>
   )
 }
