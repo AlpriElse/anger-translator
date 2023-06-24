@@ -68,3 +68,11 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/d
 ### `npm run build` fails to minify
 
 This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+
+
+## Setting up python
+Create a `pip.conf` file in `.venv` that sets pip to resolve dependencies from regular pip registry:
+```
+[global]
+index-url = https://pypi.org/simple
+```
