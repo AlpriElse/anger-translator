@@ -7,34 +7,77 @@ import Row from 'react-bootstrap/Row'
 import InputGroup from 'react-bootstrap/InputGroup'
 import Form from 'react-bootstrap/Form'
 import AngryText from './components/AngryText'
+import useDeviceType, { DeviceType } from './hooks/useDeviceType'
+import useAngerTranslation from './hooks/useAngerTranslation'
 
 function App() {
   const promptInputRef = useRef()
 
-  const [isGeneratingAngerTranslation, setIsGeneratingAngerTranslation] = useState(false)
-  const [angerTranslation, setAngerTranslation] = useState("")
 
+  const { isGeneratingAngerTranslation, angerTranslation, generateAngerTranslation} = useAngerTranslation()
   const handleOnClick = () => {
-    setIsGeneratingAngerTranslation(true)
     const inputPrompt = promptInputRef.current.value
+    generateAngerTranslation(inputPrompt)
+  }
 
-    fetch('/api/translate-anger-v1', {
-      method: 'POST',
-      headers: {
-          'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({
-        'prompt': inputPrompt
-      }),
-    })
-      .then(response => response.json())
-      .then(({ translation }) => {
-        setAngerTranslation(translation)
-        setIsGeneratingAngerTranslation(false)
-      })
-      .catch((error) => {
-          console.error('Error:', error);
-      });
+  const angerTranslationUi = (isGeneratingAngerTranslation, angerTranslation) => {
+    if (isGeneratingAngerTranslation) {
+      return (
+        <div style={{ paddingTop: '5em'}}>
+        <h2>Loading...</h2>
+      </div>
+      )
+    }
+
+    if (angerTranslation === "") {
+      return <></>
+    }
+
+    return (
+      <div style={{ paddingTop: '5em'}}>
+        <AngryText text={angerTranslation}/>
+      </div>
+    )
+  }
+
+  const deviceType = useDeviceType()
+
+  const promptInputGroup = (
+    <InputGroup>
+      <Form.Control
+        ref={promptInputRef}
+        placeholder="What are you mad about?"
+        onKeyDown={e => {
+          if (e.key === 'Enter') {
+            handleOnClick()
+          }
+        }}
+      />
+      <Button variant="primary" onClick={handleOnClick}>
+        { deviceType === DeviceType.MOBILE ? "Submit" : "Translate inner thoughts"}
+      </Button>
+    </InputGroup>
+  )
+
+  if (deviceType === DeviceType.MOBILE) {
+    return (
+      <div style={{
+        display: 'flex',
+        height: '100vh',
+        flexDirection: 'column'
+      }}>
+        <div className="p-4" style={{
+          flexGrow: 1,
+        }}>
+          {angerTranslationUi(isGeneratingAngerTranslation, angerTranslation)}
+        </div>
+        <div style={{
+          padding: '.5em'
+        }}>
+          {promptInputGroup}
+        </div>
+      </div>
+    )
   }
 
   return (
@@ -43,35 +86,13 @@ function App() {
         <Col className='text-center' md={{ span: 8, offset: 2}}>
           <h1>Anger Translator</h1>
           <div className="pt-4">
-            <InputGroup className="mb-3">
-              <Form.Control
-                ref={promptInputRef}
-                placeholder="What are you made about?"
-                onKeyDown={e => {
-                  if (e.key === 'Enter') {
-                    handleOnClick()
-                  }
-                }}
-              />
-              <Button variant="primary" onClick={handleOnClick}>
-                Translate inner thoughts
-              </Button>
-            </InputGroup>
+            {promptInputGroup}
           </div>
-          {isGeneratingAngerTranslation && (
-            <span>Loading...</span>
-          )}
         </Col>
       </Row>
       <Row>
         <Col md={{ span: 6, offset: 3}}>
-          {
-            !isGeneratingAngerTranslation && angerTranslation !== "" && (
-              <div style={{ paddingTop: '5em'}}>
-                <AngryText text={angerTranslation}/>
-              </div>
-            )
-          }
+          {angerTranslationUi(isGeneratingAngerTranslation, angerTranslation)}
         </Col>
       </Row>
     </Container>
