@@ -1,4 +1,4 @@
-import React, { useRef, useState } from 'react'
+import React, { useRef } from 'react'
 
 import Button from 'react-bootstrap/Button'
 import Container from 'react-bootstrap/Container'
@@ -10,6 +10,9 @@ import AngryText from './components/AngryText'
 import useDeviceType, { DeviceType } from './hooks/useDeviceType'
 import useAngerTranslation from './hooks/useAngerTranslation'
 import useSetVhStyleProperty from './hooks/useSetVhStyleProperty'
+import { SOMEWHAT_BLACK } from './constants/Colors'
+
+import './App.css'
 
 function App() {
   const promptInputRef = useRef()
@@ -87,7 +90,10 @@ function App() {
     <Container className="pt-4">
       <Row>
         <Col className='text-center' md={{ span: 8, offset: 2}}>
-          <h1>Anger Translator</h1>
+          <h1 style={{
+            fontFamily: 'Bangers',
+            color: SOMEWHAT_BLACK
+          }}>Anger Translator</h1>
           <div className="pt-4">
             {promptInputGroup}
           </div>
