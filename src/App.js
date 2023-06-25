@@ -12,7 +12,6 @@ import { SOMEWHAT_BLACK } from './constants/Colors'
 
 import useDeviceType, { DeviceType } from './hooks/useDeviceType'
 import useAngerTranslation from './hooks/useAngerTranslation'
-import useSetVhStyleProperty from './hooks/useSetVhStyleProperty'
 
 import './App.css'
 
@@ -64,8 +63,6 @@ function App() {
       </Button>
     </InputGroup>
   )
-
-  useSetVhStyleProperty()
 
   if (deviceType === DeviceType.MOBILE) {
     return (
