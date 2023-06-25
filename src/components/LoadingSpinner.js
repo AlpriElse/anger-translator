@@ -2,6 +2,21 @@ import React, { useState, useEffect} from 'react'
 import styled, { keyframes } from 'styled-components'
 import { SOMEWHAT_BLACK } from '../constants/Colors'
 
+const revealKeyframes = keyframes`
+0% {
+  transform: scale(.8);
+  opacity: 0;
+}
+100% {
+  transform: scale(1);
+  opacity: 1;
+}
+`
+
+const LoadingSpinnerContainer = styled.div`
+animation: ${revealKeyframes} .2s ease-out;
+`
+
 const StyledDiv = styled.div`
 display: inline-block;
 position: relative;
@@ -97,7 +112,7 @@ export default function LoadingSpinner({...props }) {
   }, [])
 
   return (
-    <div {...props}>
+    <LoadingSpinnerContainer {...props}>
       <div style={{ display: 'flex', justifyContent: 'center'}}>
         <StyledDiv>
           <ScalingDot left={5} start={0} stop={1}/>
@@ -107,7 +122,7 @@ export default function LoadingSpinner({...props }) {
         </StyledDiv>
       </div>
       <p className="text-center">{loadingMessage}</p>
-    </div>
+    </LoadingSpinnerContainer>
   )
 }
 

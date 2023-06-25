@@ -22,7 +22,10 @@ export default function useAngerTranslation() {
           prompt
         }),
       })
-        .then(response => response.json())
+        .then(response => {
+          console.log(response)
+          return response.json()
+        })
         .then(({ translation }) => {
           setAngerTranslation(translation)
           setIsGeneratingAngerTranslation(false)

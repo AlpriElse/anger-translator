@@ -1,14 +1,14 @@
 import React, { useState } from 'react'
 import styled from 'styled-components'
 
-import { MANGO } from '../constants/Colors'
+import { FORBIDDEN_SOUP } from '../constants/Colors'
 import TypeWriterText from './TypeWriterText'
 import SharingOptions from './SharingOptions'
 
 const StyledAnger = styled.h3`
 line-height: 1.75em;
 font-family: Caprasimo;
-color: ${MANGO};
+color: ${FORBIDDEN_SOUP};
 `
 
 const AngryText = ({text}) => {

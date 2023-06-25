@@ -1,6 +1,5 @@
 import React, { useRef } from 'react'
 
-import Button from 'react-bootstrap/Button'
 import Container from 'react-bootstrap/Container'
 import Col from 'react-bootstrap/Col'
 import Row from 'react-bootstrap/Row'
@@ -9,6 +8,7 @@ import Form from 'react-bootstrap/Form'
 import AngryText from './components/AngryText'
 import LoadingSpinner from './components/LoadingSpinner'
 import { SOMEWHAT_BLACK } from './constants/Colors'
+import Button from './components/UIButton'
 
 import useDeviceType, { DeviceType } from './hooks/useDeviceType'
 import useAngerTranslation from './hooks/useAngerTranslation'

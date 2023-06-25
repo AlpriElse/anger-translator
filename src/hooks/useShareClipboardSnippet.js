@@ -30,7 +30,7 @@ export default function useShareViaClipboard() {
   return {
     copyShareClipboardSnipper: () => {
       navigator.clipboard.writeText(snippet)
-        .then(() => toast.success('Copied your immaturity to your clipboard'))
+        .then(() => toast.success('Copied this masterpiece to your clipboard 👌'))
         .catch(() => toast.error("Shit copying to your clipboard failed!"));
     }
   }

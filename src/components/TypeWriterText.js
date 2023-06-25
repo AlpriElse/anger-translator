@@ -24,7 +24,7 @@ const TypeWriterText = ({text, callback = () => {}}) => {
       }
     }
     type(0);
-  }, [text])
+  }, [])
   return (
     <>
       <span className="text-start" ref={typewriterRef}></span>{isTyping && <BlinkingCursor/>}
