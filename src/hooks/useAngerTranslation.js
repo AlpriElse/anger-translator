@@ -1,14 +1,17 @@
-import { useState }from 'react'
+import { useContext, useState } from 'react'
+import { AngerTranslationContext } from '../contexts/AngerTranslationContext'
 
 export default function useAngerTranslation() {
+  const { angerPrompt, setAngerPrompt, angerTranslation, setAngerTranslation } = useContext(AngerTranslationContext)
   const [isGeneratingAngerTranslation, setIsGeneratingAngerTranslation] = useState(false)
-  const [angerTranslation, setAngerTranslation] = useState("")
 
   return {
+    angerPrompt,
     isGeneratingAngerTranslation,
     angerTranslation,
     generateAngerTranslation: (prompt) => {
       setIsGeneratingAngerTranslation(true)
+      setAngerPrompt(prompt)
 
       fetch('/api/translate-anger-v1', {
         method: 'POST',

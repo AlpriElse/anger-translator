@@ -1,7 +1,9 @@
-import React from 'react'
+import React, { useState } from 'react'
 import styled from 'styled-components'
-import TypeWriterText from './TypeWriterText'
+
 import { MANGO } from '../constants/Colors'
+import TypeWriterText from './TypeWriterText'
+import SharingOptions from './SharingOptions'
 
 const StyledAnger = styled.h3`
 line-height: 1.75em;
@@ -9,10 +11,22 @@ font-family: Caprasimo;
 color: ${MANGO};
 `
 
-const AngryText = ({text}) => (
-  <StyledAnger>
-    <TypeWriterText text={text}/>
-  </StyledAnger>
-)
+const AngryText = ({text}) => {
+  const [isTyping, setIsTyping] = useState(true)
+
+  return (
+    <div>
+      <StyledAnger>
+        <TypeWriterText text={text} callback={() => setIsTyping(false)}/>
+      </StyledAnger>
+      <div className="pt-3" style={{
+        display: 'flex',
+        justifyContent: 'right'
+      }}>
+        {!isTyping && <SharingOptions/>}
+      </div>
+    </div>
+  )
+}
 
 export default AngryText

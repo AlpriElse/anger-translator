@@ -1,7 +1,7 @@
 import React, { useEffect, useRef, useState } from 'react'
 import BlinkingCursor from './BlinkingCursor'
 
-const TypeWriterText = ({text}) => {
+const TypeWriterText = ({text, callback = () => {}}) => {
   const [isTyping, setIsTyping] = useState(true)
   const typewriterRef = useRef()
   useEffect(() => {
@@ -15,7 +15,10 @@ const TypeWriterText = ({text}) => {
         );
       } else {
         setTimeout(
-          () => setIsTyping(false),
+          () => {
+            setIsTyping(false)
+            callback()
+          },
           2000
         )
       }
