@@ -3,11 +3,11 @@ import { toast } from 'react-hot-toast';
 import useAngerTranslation from './useAngerTranslation';
 
 const SIGNATURES = [
-  "Made in an outburst by angertranslator.ai",
-  "💥 into existence by angertranslator.ai",
-  "🔥 into being by angertranslator.ai",
-  "Frustrated 😡 into creation by angertranslator.ai",
-  "Made with 💢 by angertranslator.ai"
+  "Made in an outburst by https://angertranslator.ai",
+  "💥 into existence by https://angertranslator.ai",
+  "🔥 into being by https://angertranslator.ai",
+  "Frustrated 😡 into creation by https://angertranslator.ai",
+  "Made with 💢 by https://angertranslator.ai"
 ]
 
 function getRandomSignature() {
