@@ -19,7 +19,7 @@ export default function AppContainer() {
       ReactGA.initialize(GOOGLE_ANALYTICS_TRACKING_CODE)
       ReactGA.pageview(window.location.pathname + window.location.search)
     }
-  }, [])
+  }, [isDeployed])
 
   return (
     <>

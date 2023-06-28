@@ -1,5 +1,7 @@
 import { useContext, useState } from 'react'
 import { AngerTranslationContext } from '../contexts/AngerTranslationContext'
+import { track } from '@amplitude/analytics-browser'
+import * as AmplitudeEvents from '../constants/AmplitudeEvents'
 
 export default function useAngerTranslation() {
   const { angerPrompt, setAngerPrompt, angerTranslation, setAngerTranslation } = useContext(AngerTranslationContext)
@@ -12,6 +14,8 @@ export default function useAngerTranslation() {
     generateAngerTranslation: (prompt) => {
       setIsGeneratingAngerTranslation(true)
       setAngerPrompt(prompt)
+
+      track(AmplitudeEvents.SUBMIT_ANGRY_PROMPT)
 
       fetch('/api/translate-anger-v1', {
         method: 'POST',
@@ -32,6 +36,8 @@ export default function useAngerTranslation() {
         })
         .catch((error) => {
             console.error('Error:', error);
+
+            track(AmplitudeEvents.SUBMIT_ANGRY_PROMPT_FAILED)
         });
     }
   }
