@@ -14,6 +14,7 @@ import useDeviceType, { DeviceType } from './hooks/useDeviceType'
 import useAngerTranslation from './hooks/useAngerTranslation'
 
 import './App.css'
+import mobileOnboarding from './mobile-onboarding.png'
 
 
 function App() {
@@ -68,6 +69,7 @@ function App() {
   )
 
   if (deviceType === DeviceType.MOBILE) {
+    const shouldShowOnboarding = !isGeneratingAngerTranslation && ! angerTranslation
     return (
       <>
         <h1 className='text-center p-3' style={{
@@ -86,8 +88,11 @@ function App() {
           left: 0,
           right: 0,
           width: '100%',
-          padding: '.5em'
+          padding: '.5em',
         }}>
+          {shouldShowOnboarding && (
+            <img src={mobileOnboarding} style={{ maxWidth: '15em', display: 'inherit', margin: '0 auto'}}/>
+          )}
           {promptInputGroup}
         </div>
       </>
