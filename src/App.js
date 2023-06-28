@@ -15,6 +15,7 @@ import useAngerTranslation from './hooks/useAngerTranslation'
 
 import './App.css'
 
+
 function App() {
   const promptInputRef = useRef()
 
@@ -25,10 +26,14 @@ function App() {
     generateAngerTranslation(inputPrompt)
   }
 
+
+  const deviceType = useDeviceType()
+
+
   const angerTranslationUi = (isGeneratingAngerTranslation, angerTranslation) => {
     if (isGeneratingAngerTranslation) {
       return (
-        <div style={{ paddingTop: '5em', display: 'flex', justifyContent: 'center'}}>
+        <div style={{ height: '100vh', display: 'flex', justifyContent: 'center', alignItems: 'center'}}>
           <LoadingSpinner/>
         </div>
       )
@@ -44,8 +49,6 @@ function App() {
       </div>
     )
   }
-
-  const deviceType = useDeviceType()
 
   const promptInputGroup = (
     <InputGroup>
@@ -66,22 +69,21 @@ function App() {
 
   if (deviceType === DeviceType.MOBILE) {
     return (
-      <div style={{
-        display: 'flex',
-        height: 'calc(100vh - env(safe-area-inset-bottom))',
-        flexDirection: 'column'
-      }}>
-        <div className="p-4" style={{
-          flexGrow: 1,
-        }}>
-          {angerTranslationUi(isGeneratingAngerTranslation, angerTranslation)}
-        </div>
+      <>
+
+        {angerTranslationUi(isGeneratingAngerTranslation, angerTranslation)}
+
         <div style={{
+          position: 'fixed',
+          bottom: 0,
+          left: 0,
+          right: 0,
+          width: '100%',
           padding: '.5em'
         }}>
           {promptInputGroup}
         </div>
-      </div>
+      </>
     )
   }
 

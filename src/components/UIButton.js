@@ -5,6 +5,7 @@ import * as Colors from '../constants/Colors'
 
 const PrimaryStyledButton = styled(Button)`
 background-color: ${Colors.SOMEWHAT_BLACK};
+border-color: ${Colors.SOMEWHAT_BLACK};
 &:hover {
   background-color: ${Colors.DEAD_EGGPLANT};
 }

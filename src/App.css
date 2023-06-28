@@ -1,6 +1,18 @@
 @import url('https://fonts.googleapis.com/css2?family=Bangers&family=Caprasimo&family=Open+Sans&display=swap');
 
 body {
+  position: relative;
+  padding-top: env(safe-area-inset-top);
+  height: 100vh;
+  padding-bottom: env(safe-area-inset-bottom);
   background-color: #FBFFFE;
   font-family: 'Open Sans', sans-serif !important;
+}
+
+#root {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: env(safe-area-inset-bottom);
 }
