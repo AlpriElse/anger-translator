@@ -33,18 +33,18 @@ function App() {
   const angerTranslationUi = (isGeneratingAngerTranslation, angerTranslation) => {
     if (isGeneratingAngerTranslation) {
       return (
-        <div style={{ height: '100vh', display: 'flex', justifyContent: 'center', alignItems: 'center'}}>
+        <div style={{ height: '90vh', display: 'flex', justifyContent: 'center', alignItems: 'center'}}>
           <LoadingSpinner/>
         </div>
       )
     }
 
     if (angerTranslation === "") {
-      return <></>
+      return <span></span>
     }
 
     return (
-      <div style={{ paddingTop: '5em'}}>
+      <div className="p-1">
         <AngryText text={angerTranslation}/>
       </div>
     )
@@ -70,9 +70,16 @@ function App() {
   if (deviceType === DeviceType.MOBILE) {
     return (
       <>
-
-        {angerTranslationUi(isGeneratingAngerTranslation, angerTranslation)}
-
+        <h1 className='text-center p-3' style={{
+          fontFamily: 'Bangers',
+          color: SOMEWHAT_BLACK,
+          width: '100%'
+        }}>
+          Anger Translator
+        </h1>
+        <div className="p-5">
+          {angerTranslationUi(isGeneratingAngerTranslation, angerTranslation)}
+        </div>
         <div style={{
           position: 'fixed',
           bottom: 0,
