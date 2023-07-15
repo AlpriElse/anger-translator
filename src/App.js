@@ -72,14 +72,28 @@ function App() {
     const shouldShowOnboarding = !isGeneratingAngerTranslation && ! angerTranslation
     return (
       <>
-        <h1 className='text-center p-3' style={{
-          fontFamily: 'Bangers',
-          color: SOMEWHAT_BLACK,
-          width: '100%'
+        <div style={{
+          display: 'flex',
+          width: '100%',
+          alignItems: 'center',
+          justifyContent: 'center',
+          flexWrap: 'wrap'
         }}>
-          Anger Translator
-        </h1>
-        <div className="p-5">
+          <img src={`${process.env.PUBLIC_URL}/android-chrome-384x384.png`} style={{
+            flexBasis: 1,
+            width: "3em",
+            height: "3em"
+          }}/>
+
+
+          <h1 className='text-center p-3' style={{
+            fontFamily: 'Bangers',
+            color: SOMEWHAT_BLACK
+          }}>
+            Anger Translator
+          </h1>
+        </div>
+        <div className="p-4">
           {angerTranslationUi(isGeneratingAngerTranslation, angerTranslation)}
         </div>
         <div style={{
@@ -103,6 +117,11 @@ function App() {
     <Container className="pt-4">
       <Row>
         <Col className='text-center' md={{ span: 8, offset: 2}}>
+        <img src={`${process.env.PUBLIC_URL}/android-chrome-384x384.png`} style={{
+            flexBasis: 1,
+            width: "4em",
+            height: "4em"
+          }}/>
           <h1 style={{
             fontFamily: 'Bangers',
             color: SOMEWHAT_BLACK
@@ -112,7 +131,7 @@ function App() {
           </div>
         </Col>
       </Row>
-      <Row>
+      <Row className="p-3">
         <Col md={{ span: 6, offset: 3}}>
           {angerTranslationUi(isGeneratingAngerTranslation, angerTranslation)}
         </Col>
